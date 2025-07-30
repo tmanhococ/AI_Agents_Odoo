@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Main Menu -->
+        <menuitem id="menu_ai_agents_root"
+                  name="AI Agents"
+                  sequence="100"/>
+
+        <!-- AI Agents Menu -->
+        <menuitem id="menu_ai_agents"
+                  name="AI Agents"
+                  parent="menu_ai_agents_root"
+                  sequence="10"/>
+
+        <menuitem id="menu_ai_agent"
+                  name="Agents"
+                  parent="menu_ai_agents"
+                  action="action_ai_agent"
+                  sequence="10"/>
+
+        <!-- Orchestrators Menu -->
+        <menuitem id="menu_ai_orchestrators"
+                  name="Orchestrators"
+                  parent="menu_ai_agents_root"
+                  sequence="20"/>
+
+        <menuitem id="menu_ai_orchestrator"
+                  name="Orchestrators"
+                  parent="menu_ai_orchestrators"
+                  action="action_ai_orchestrator"
+                  sequence="10"/>
+
+        <!-- Tasks Menu -->
+        <menuitem id="menu_ai_tasks"
+                  name="Tasks"
+                  parent="menu_ai_agents_root"
+                  action="action_ai_task"
+                  sequence="30"/>
+
+        <!-- Conversations Menu -->
+        <menuitem id="menu_ai_conversations"
+                  name="Conversations"
+                  parent="menu_ai_agents_root"
+                  action="action_ai_conversation"
+                  sequence="40"/>
+
+        <!-- MCP Servers Menu -->
+        <menuitem id="menu_ai_mcp_servers"
+                  name="MCP Servers"
+                  parent="menu_ai_agents_root"
+                  action="action_ai_mcp_server"
+                  sequence="50"/>
+    </data>
+</odoo> 

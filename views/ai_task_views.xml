@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- AI Task Tree View -->
+        <record id="view_ai_task_tree" model="ir.ui.view">
+            <field name="name">ai.task.tree</field>
+            <field name="model">ai.task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="task_type"/>
+                    <field name="agent_id"/>
+                    <field name="state"/>
+                    <field name="priority"/>
+                    <field name="start_time"/>
+                    <field name="response_time"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- AI Task Form View -->
+        <record id="view_ai_task_form" model="ir.ui.view">
+            <field name="name">ai.task.form</field>
+            <field name="model">ai.task</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="execute" string="Execute" type="object" class="oe_highlight" states="pending"/>
+                        <button name="retry" string="Retry" type="object" states="failed"/>
+                        <button name="cancel" string="Cancel" type="object" states="pending,running"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="task_type"/>
+                                <field name="agent_id"/>
+                                <field name="orchestrator_id"/>
+                                <field name="priority"/>
+                            </group>
+                            <group>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                                <field name="response_time"/>
+                                <field name="execution_duration"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Data">
+                                <group>
+                                    <field name="input_data"/>
+                                    <field name="output_data"/>
+                                </group>
+                            </page>
+                            <page string="Error Handling">
+                                <group>
+                                    <field name="error_message"/>
+                                    <field name="retry_count"/>
+                                    <field name="max_retries"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- AI Task Action -->
+        <record id="action_ai_task" model="ir.actions.act_window">
+            <field name="name">AI Tasks</field>
+            <field name="res_model">ai.task</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo> 

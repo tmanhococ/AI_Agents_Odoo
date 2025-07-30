@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Cleanup old tasks -->
+        <record id="ir_cron_cleanup_old_tasks" model="ir.cron">
+            <field name="name">AI Agents: Cleanup Old Tasks</field>
+            <field name="model_id" ref="model_ai_task"/>
+            <field name="state">code</field>
+            <field name="code">model.cleanup_old_tasks(days=7)</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Cleanup old conversations -->
+        <record id="ir_cron_cleanup_old_conversations" model="ir.cron">
+            <field name="name">AI Agents: Cleanup Old Conversations</field>
+            <field name="model_id" ref="model_ai_conversation"/>
+            <field name="state">code</field>
+            <field name="code">model.cleanup_old_conversations(days=30)</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Retry failed tasks -->
+        <record id="ir_cron_retry_failed_tasks" model="ir.cron">
+            <field name="name">AI Agents: Retry Failed Tasks</field>
+            <field name="model_id" ref="model_ai_task"/>
+            <field name="state">code</field>
+            <field name="code">model.search([('state', '=', 'failed'), ('retry_count', '&lt;', 'max_retries')]).retry()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo> 

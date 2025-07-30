@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- AI Orchestrator Tree View -->
+        <record id="view_ai_orchestrator_tree" model="ir.ui.view">
+            <field name="name">ai.orchestrator.tree</field>
+            <field name="model">ai.orchestrator</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="pending_task_count"/>
+                    <field name="running_task_count"/>
+                    <field name="completed_task_count"/>
+                    <field name="success_rate"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- AI Orchestrator Form View -->
+        <record id="view_ai_orchestrator_form" model="ir.ui.view">
+            <field name="name">ai.orchestrator.form</field>
+            <field name="model">ai.orchestrator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="start" string="Start" type="object" class="oe_highlight" states="draft,paused"/>
+                        <button name="pause" string="Pause" type="object" states="active"/>
+                        <button name="resume" string="Resume" type="object" states="paused"/>
+                        <button name="stop" string="Stop" type="object" states="active,paused"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="active"/>
+                            </group>
+                            <group>
+                                <field name="planner_agent_id"/>
+                                <field name="router_agent_id"/>
+                                <field name="max_concurrent_tasks"/>
+                                <field name="task_timeout"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Agents">
+                                <field name="agent_ids"/>
+                            </page>
+                            <page string="Tasks">
+                                <field name="task_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- AI Orchestrator Action -->
+        <record id="action_ai_orchestrator" model="ir.actions.act_window">
+            <field name="name">AI Orchestrators</field>
+            <field name="res_model">ai.orchestrator</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo> 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- AI MCP Server Tree View -->
+        <record id="view_ai_mcp_server_tree" model="ir.ui.view">
+            <field name="name">ai.mcp.server.tree</field>
+            <field name="model">ai.mcp.server</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="port"/>
+                    <field name="total_requests"/>
+                    <field name="success_rate"/>
+                    <field name="last_activity"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- AI MCP Server Form View -->
+        <record id="view_ai_mcp_server_form" model="ir.ui.view">
+            <field name="name">ai.mcp.server.form</field>
+            <field name="model">ai.mcp.server</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="start_server" string="Start Server" type="object" class="oe_highlight" states="stopped"/>
+                        <button name="stop_server" string="Stop Server" type="object" states="running"/>
+                        <button name="restart_server" string="Restart" type="object" states="running"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="active"/>
+                                <field name="orchestrator_id"/>
+                            </group>
+                            <group>
+                                <field name="port"/>
+                                <field name="host"/>
+                                <field name="mcp_version"/>
+                                <field name="server_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Configuration">
+                                <group>
+                                    <field name="max_concurrent_requests"/>
+                                    <field name="request_timeout"/>
+                                    <field name="enable_logging"/>
+                                </group>
+                            </page>
+                            <page string="Agents">
+                                <field name="agent_ids"/>
+                            </page>
+                            <page string="Performance">
+                                <group>
+                                    <field name="total_requests"/>
+                                    <field name="success_rate"/>
+                                    <field name="avg_response_time"/>
+                                    <field name="error_message"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- AI MCP Server Action -->
+        <record id="action_ai_mcp_server" model="ir.actions.act_window">
+            <field name="name">MCP Servers</field>
+            <field name="res_model">ai.mcp.server</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo> 

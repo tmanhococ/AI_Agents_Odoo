@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- AI Conversation Tree View -->
+        <record id="view_ai_conversation_tree" model="ir.ui.view">
+            <field name="name">ai.conversation.tree</field>
+            <field name="model">ai.conversation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="request_type"/>
+                    <field name="complexity"/>
+                    <field name="state"/>
+                    <field name="duration"/>
+                    <field name="start_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- AI Conversation Form View -->
+        <record id="view_ai_conversation_form" model="ir.ui.view">
+            <field name="name">ai.conversation.form</field>
+            <field name="model">ai.conversation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="retry" string="Retry" type="object" states="failed"/>
+                        <button name="cancel" string="Cancel" type="object" states="active"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="user_id"/>
+                                <field name="orchestrator_id"/>
+                                <field name="request_type"/>
+                            </group>
+                            <group>
+                                <field name="complexity"/>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                                <field name="duration"/>
+                                <field name="success"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Data">
+                                <group>
+                                    <field name="request_data"/>
+                                    <field name="response_data"/>
+                                </group>
+                            </page>
+                            <page string="History">
+                                <field name="conversation_history"/>
+                            </page>
+                            <page string="Tasks">
+                                <field name="task_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- AI Conversation Action -->
+        <record id="action_ai_conversation" model="ir.actions.act_window">
+            <field name="name">AI Conversations</field>
+            <field name="res_model">ai.conversation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo> 

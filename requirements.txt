@@ -1,0 +1,23 @@
+# AI Agents Orchestrator Requirements
+# MCP Protocol Support
+mcp>=0.1.1
+pydantic>=2.0.0
+anyio>=3.7.0
+
+# Async Support
+asyncio-mqtt>=0.13.0
+
+# HTTP Client
+requests>=2.31.0
+
+# JSON Processing
+jsonschema>=4.17.0
+
+# Logging
+structlog>=23.1.0
+
+# Development Dependencies (optional)
+# black>=23.0.0
+# isort>=5.12.0
+# mypy>=1.0.0
+# ruff>=0.0.270 
